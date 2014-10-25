@@ -1,0 +1,37 @@
+# Project: AudioPlayer
+# Makefile created by Dev-C++ 5.8.1
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = obj/main.o obj/AudioTask.o obj/AudioPlayer.o obj/resource.o
+LINKOBJ  = obj/main.o obj/AudioTask.o obj/AudioPlayer.o obj/resource.o
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc lib/libwinmm.a -mwindows
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++"
+BIN      = ../AudioPlayer.exe
+CXXFLAGS = $(CXXINCS) -mwindows -Wno-unused-parameter
+CFLAGS   = $(INCS) -mwindows
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+obj/main.o: main.cpp
+	$(CPP) -c main.cpp -o obj/main.o $(CXXFLAGS)
+
+obj/AudioTask.o: AudioTask.cpp
+	$(CPP) -c AudioTask.cpp -o obj/AudioTask.o $(CXXFLAGS)
+
+obj/AudioPlayer.o: AudioPlayer.cpp
+	$(CPP) -c AudioPlayer.cpp -o obj/AudioPlayer.o $(CXXFLAGS)
+
+obj/resource.o: resource.cpp
+	$(CPP) -c resource.cpp -o obj/resource.o $(CXXFLAGS)
